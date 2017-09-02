@@ -14,8 +14,7 @@
 	/* Переопределяем функцию */
 	console.log = function(...params) {
 		let styles    = [],    //Стили для вывода
-		    logParams = [],	    //Параметры для console.log
-		    prevType  = null   //Служебная переменная
+		    logParams = []    //Параметры для console.log
 
 		params.forEach(param => {
 			let type = 's'
@@ -37,7 +36,7 @@
 				constyle.push(styleName + ':' + consoleStyles[styleName])
 			)
 
-			if (type != 'o' && styles.length && prevType != 'o')
+			if (type != 'o' && styles.length && styles[styles.length - 1] != '%c%o')
 				styles.push(`%${type}`)
 			else
 			{
@@ -45,7 +44,6 @@
 				logParams.push(constyle.join(';'))
 			}
 			logParams.push(param)
-			prevType = type
 		})
 
 		console.log_(styles.join(' '), ...logParams)
