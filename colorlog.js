@@ -34,9 +34,8 @@
 					break
 			}
 			let constyle = []
-			Object.getOwnPropertyNames(consoleStyles).forEach(styleName =>
+			for (let styleName in consoleStyles)
 				constyle.push(styleName + ':' + consoleStyles[styleName])
-			)
 
 			if (type != 'o' && styles.length && styles[styles.length - 1] != '%c%o')
 				styles.push(`%${type}`)
