@@ -25,10 +25,8 @@
 					break
 				case 'number':
 					type = 'd'
-					if (param % 1 != 0)
-					{
-						type = (floatPrecision == 0) ? 's' : `.${floatPrecision}f`
-					}
+					if (param % 1 != 0 && floatPrecision != 0)
+						type = `.${floatPrecision}f`
 					break
 			}
 			let constyle = []
