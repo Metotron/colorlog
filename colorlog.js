@@ -18,14 +18,13 @@
 
 		params.forEach(param => {
 			let type = 's'
-			switch (typeof(param))
-			{
+			switch (typeof(param)) {
 				case 'object':
 					type = 'o'
 					break
+
 				case 'number':
-					if (param % 1 != 0)
-					{
+					if (param % 1 != 0) {
 						if (floatPrecision != 0)
 							type = `.${floatPrecision}f`
 					}
@@ -39,8 +38,7 @@
 
 			if (type != 'o' && styles.length && styles[styles.length - 1] != '%c%o')
 				styles.push(`%${type}`)
-			else
-			{
+			else {
 				styles.push(`%c%${type}`)
 				logParams.push(constyle.join(';'))
 			}
