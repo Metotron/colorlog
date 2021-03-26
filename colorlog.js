@@ -36,6 +36,7 @@
 			for (let styleName in consoleStyles)
 				constyle.push(styleName + ':' + consoleStyles[styleName])
 
+			// Если перед этим выводили не объект, то стили заново вставлять не нужно, они ещё действуют
 			if (type != 'o' && styles.length && styles[styles.length - 1] != '%c%o')
 				styles.push(`%${type}`)
 			else {
