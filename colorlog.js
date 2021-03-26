@@ -6,15 +6,15 @@
 		'color'            : '#499e4b',
 		//'background-color' : '#282828'
 	},
-	floatPrecision = 0        //Количество точек после запятой для дробных чисел. 0 — вывод строкой
+	floatPrecision = 0        // Количество знаков после запятой для дробных чисел. 0 — вывод строкой
 
 	/* Сохраняем нативную функцию */
 	console.log_ = console.log
 
 	/* Переопределяем функцию */
 	console.log = function(...params) {
-		let styles    = [],    //Стили для вывода
-		    logParams = []    //Параметры для console.log
+		let styles    = [],    // Стили для вывода
+		    logParams = []     // Параметры для console.log
 
 		params.forEach(param => {
 			let type = 's'
