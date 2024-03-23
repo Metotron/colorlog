@@ -1,48 +1,43 @@
 (function() {
-	'use strict'
-	let consoleStyles = {
-		'font-size'        : '14px',
-		'padding'          : '2px 5px',
-		'color'            : '#499e4b',
-		//'background-color' : '#282828'
-	},
-	floatPrecision = 0        // Количество знаков после запятой для дробных чисел. 0 — вывод строкой
+	const consoleStyles = [
+		'font-size: 14px',
+		'padding: 2px 5px',
+		'color: #499e4b'
+	].join(';')
 
-	/* Сохраняем нативную функцию */
+	const floatPrecision = 0        // Количество знаков после запятой для дробных чисел. 0 — вывод строкой
+
 	console.log_ = console.log
 
-	/* Переопределяем функцию */
-	console.log = function(...params) {
-		let styles    = [],    // Стили для вывода
-		    logParams = []     // Параметры для console.log
+	console.log = (...params) => {
+		const styles    = [],    // Стили для вывода
+		      logParams = []     // Параметры для console.log
 
 		params.forEach(param => {
 			let type = 's'
+
 			switch (typeof(param)) {
 				case 'object':
 					type = 'o'
 					break
 
 				case 'number':
-					if (param % 1 != 0) {
-						if (floatPrecision != 0)
-							type = `.${floatPrecision}f`
-					}
-					else
+					if (param % 1 == 0)
 						type = 'd'
+					else if (floatPrecision != 0)
+						type = `.${floatPrecision}f`
 					break
 			}
-			let constyle = []
-			for (let styleName in consoleStyles)
-				constyle.push(styleName + ':' + consoleStyles[styleName])
 
 			// Если перед этим выводили не объект, то стили заново вставлять не нужно, они ещё действуют
-			if (type != 'o' && styles.length && styles[styles.length - 1] != '%c%o')
+			if (type != 'o' && styles.length && styles[styles.length - 1] != '%c%o') {
 				styles.push(`%${type}`)
+			}
 			else {
 				styles.push(`%c%${type}`)
-				logParams.push(constyle.join(';'))
+				logParams.push(consoleStyles)
 			}
+
 			logParams.push(param)
 		})
 
